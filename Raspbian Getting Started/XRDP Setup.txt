@@ -1,0 +1,12 @@
+This is a basic walkthrough for the installation of xrdp. 
+Xrdp is an open source remote desktop protocol server. What's convenient about it is that you do not need to install any extra client software on the Windows side. You can use the Remote Desktop Connection application that is provided with Windows. 
+I also have notice that the use of this protocol seems to perform a little better than the experiences I have had the vnc protocol.
+
+To install, run the following commands in the terminal application:
+	1. sudo apt-get update
+	2. sudo apt-get upgrade
+	3. sudo apt-get xrdp
+
+That's all there is to it. You may have to enter your password. If you haven't
+yet changed it and you are using NOOBS, then the default password is
+"raspberry". Cheers.
