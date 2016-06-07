@@ -1,0 +1,40 @@
+If you are planning to consistently use xrdp to connect to your pi, you may want
+to set a static IP address. To set up a static IP address perform the following 
+steps:
+	1. Open a Terminal instance.
+	2. Enter "ipconfig"
+	3. If you want to use your ethernet port look under "eth0", if you are using
+	   a wifi connection look under "wlan0".
+	4. Write down the information in the fields "inet addr", "Bcast", and 
+	   "Mask".
+	   - inet addr is the device's current IP address.
+	   - Bcast is the broadcast IP range.
+	   - Mask is the subnet mask address.
+	5. Enter "netstat -nr"
+	6. Write down the information in the "Gateway" field.
+	   - Use the fields that have values in them.
+	7. Enter "cp /etc/network/interfaces /etc/network/interfaces-backup".
+	8. Enter "sudo nano /etc/network/interfaces".
+	9. In the nano editor, make the file mimic the following format:
+		 ___________________________________________________________________
+		|																	|
+		| auto lo 															|
+		| iface lo inet loopback											|
+		|																	|
+		| iface default inet static											|
+		| address "inet addr"												|
+		| netmask "Mask"													|
+		| broadcast "Bcast"													|
+		| gateway "Gateway"													|
+		|																	|
+		| allow-hotplug wlan0												|
+		| iface wlan0 inet manual											|
+		| wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf					|
+		| iface default inet dhcp											|
+		|___________________________________________________________________|
+		
+	   - Areas encapsulated in quotations (") are where you input the values of 
+	     the fields you wrote down earlier.
+	   - With the IP addresses, the last number in the series can be anything 
+	     you want less than 255. The first three numbers, must stay the same as 
+	     the first three as your Gateway.
