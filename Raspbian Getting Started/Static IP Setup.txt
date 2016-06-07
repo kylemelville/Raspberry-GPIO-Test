@@ -17,20 +17,20 @@ steps:
 	8. Enter "sudo nano /etc/network/interfaces".
 	9. In the nano editor, make the file mimic the following format:
 		 ___________________________________________________________________
-		|																	|
-		| auto lo 															|
-		| iface lo inet loopback											|
-		|																	|
-		| iface default inet static											|
-		| address "inet addr"												|
-		| netmask "Mask"													|
-		| broadcast "Bcast"													|
-		| gateway "Gateway"													|
-		|																	|
-		| allow-hotplug wlan0												|
-		| iface wlan0 inet manual											|
-		| wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf					|
-		| iface default inet dhcp											|
+		|                                                                   |
+		| auto lo                                                           |
+		| iface lo inet loopback                                            |
+		|                                                                   |
+		| iface default inet static                                         |
+		| address "inet addr"                                               |
+		| netmask "Mask"                                                    |
+		| broadcast "Bcast"                                                 |
+		| gateway "Gateway"                                                 |
+		|                                                                   |
+		| allow-hotplug wlan0                                               |
+		| iface wlan0 inet manual                                           |
+		| wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf                  |
+		| iface default inet dhcp                                           |
 		|___________________________________________________________________|
 		
 	   - Areas encapsulated in quotations (") are where you input the values of 
