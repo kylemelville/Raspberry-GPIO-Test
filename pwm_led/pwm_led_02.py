@@ -1,27 +1,37 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(7, GPIO.OUT)
 
-p0 = GPIO.PWM(7, 50)
-p1 = GPIO.PWM(13, 50)
-p2 = GPIO.PWM(29, 50)
-p0.start(0)
-p1.start(0)
-p2.start(0)
+#functions
+def toggle_leds(mode):
+    if mode:
+        for led in leds:
+            led.start(0)
+    else:
+        for led in leds:
+            led.stop(0)
+
+def get_new_led(pin, frequency):
+    GPIO.setup(pin, GPIO.OUT)
+    return GPIO.PWM(pin, frequency)
+
+#execution
+GPIO.setmode(GPIO.BOARD)
+leds = []
+leds.append(get_new_led(7, 50))
+leds.append(get_new_led(13, 50))
+leds.append(get_new_led(29, 50))
+toggle_leds(True)
 try:
     while True:
         for i in range(100):
-			p0.ChangeDutyCycle(i)
-            p1.ChangeDutyCycle(i)
-            p2.ChangeDutyCycle(i)
+            for led in leds:
+                led.ChangeDutyCycle(i)
             time.sleep(0.02)
         for i in range(100):
-            p0.ChangeDutyCycle(100 - i)
-            p1.ChangeDutyCycle(100 - i)
-            p2.ChangeDutyCycle(100 - i)
+            for led in leds:
+                led.ChangeDutyCycle(100 - i)
             time.sleep(0.02)
 except KeyboardInterrupt:
     pass
-p.stop()
+toggle_leds(False)
 GPIO.cleanup()
