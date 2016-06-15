@@ -16,6 +16,8 @@ def get_new_led(pin, frequency):
 
 #execution
 GPIO.setmode(GPIO.BOARD)
+min = 0
+max = 100
 leds = []
 leds.append(get_new_led(7, 50))
 leds.append(get_new_led(13, 50))
@@ -23,11 +25,11 @@ leds.append(get_new_led(29, 50))
 toggle_leds(True)
 try:
     while True:
-        for i in range(100):
+        for i in range(max):
             for led in leds:
                 led.ChangeDutyCycle(i)
             time.sleep(0.02)
-        for i in range(100):
+        for i in range(max - min):
             for led in leds:
                 led.ChangeDutyCycle(100 - i)
             time.sleep(0.02)
